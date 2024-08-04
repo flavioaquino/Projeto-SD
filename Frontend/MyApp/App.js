@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get('http://192.168.0.100:5000/items'); // Substitua pelo IP e porta do seu backend Flask
+      const response = await axios.get('http://localhost:5000/produtos');
       setItems(response.data);
     } catch (error) {
       console.error(error);
@@ -21,7 +21,7 @@ const App = () => {
 
   const addItem = async () => {
     try {
-      await axios.post('http://192.168.0.100:5000/items', { id: Date.now(), name });
+      await axios.post('http://localhost:5000/produtos', { id: Date.now(), name });
       fetchItems();
       setName('');
     } catch (error) {
