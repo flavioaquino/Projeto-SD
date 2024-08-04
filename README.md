@@ -4,3 +4,6 @@ React Native
 
 ## Backend
 Flask
+
+## Banco de Dados Distribuído
+CassandraDB
