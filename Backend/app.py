@@ -2,6 +2,8 @@ import os
 from flask import Flask, request, jsonify
 from cassandra_connection import get_session
 from uuid import uuid4
+from decimal import Decimal
+
 
 app = Flask(__name__)
 session = get_session()
@@ -38,7 +40,7 @@ def update_produto(id):
     print("Chamada recebida para atualizar produto.")
     data = request.json
     nome = data.get('nome')
-    preco = data.get('preco')
+    preco = Decimal(data.get('preco'))  # Converte para Decimal
     quantidade = data.get('quantidade')
     
     query = "UPDATE produtos SET nome=%s, preco=%s, quantidade=%s WHERE id=%s"

@@ -51,9 +51,21 @@ const App = () => {
       fetchItems();
       setSelectedItem(null);
       setQuantity('');
+      Alert.alert("Success", "Quantity updated successfully!"); // Alerta de sucesso
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleEditQuantity = (id) => {
+    Alert.alert(
+      "Edit Quantity",
+      "Are you sure you want to update the quantity?",
+      [
+        { text: "Cancel", style: "cancel" },
+        { text: "OK", onPress: () => editQuantity(id) }
+      ]
+    );
   };
 
   return (
@@ -97,7 +109,7 @@ const App = () => {
       />
       {selectedItem && (
         <View style={styles.buttonsContainer}>
-          <Button title="Edit Quantity" onPress={() => editQuantity(selectedItem.id)} />
+          <Button title="Edit Quantity" onPress={() => handleEditQuantity(selectedItem.id)} />
           <Button
             title="Delete Product"
             onPress={() => {
