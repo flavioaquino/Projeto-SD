@@ -1,9 +1,13 @@
+import os
 from flask import Flask, request, jsonify
 from cassandra_connection import get_session
 from uuid import uuid4
 
 app = Flask(__name__)
 session = get_session()
+
+# Usa a variável de ambiente PORT, ou 5000 como padrão
+PORT = int(os.environ.get('PORT', 5000))
 
 @app.route('/produtos', methods=['POST'])
 def create_produto():
@@ -42,4 +46,5 @@ def delete_produto(id):
     return jsonify({'message': 'Produto deletado'}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # Vincula o servidor à porta definida pela variável de ambiente PORT
+    app.run(host='0.0.0.0', port=PORT, debug=True)
