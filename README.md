@@ -3,15 +3,14 @@ Implementação de um sistema simples de estoque de Supermercado, para estudo de
 
 ## Frontend
 React Native
-
-Instalação
-
+Deploy possibilitado através do Expo.
 ## Backend
 Flask (Python)
+Hospedado no serviço Render.
 
 Instalação:
-Navegue até a pasta Backend;
-Digite no terminal: npm install requirements.txt
+Navegue até a pasta Backend e digite no terminal: npm install requirements.txt
 
 ## Banco de Dados Distribuído
 CassandraDB
+Hospedado no serviço DataStrax Astra.
