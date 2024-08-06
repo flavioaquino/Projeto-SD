@@ -39,6 +39,7 @@ const App = () => {
     try {
       await axios.delete(`https://projeto-sd.onrender.com/produtos/${id}`);
       fetchItems();
+      setSelectedItem(null);
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +52,7 @@ const App = () => {
       fetchItems();
       setSelectedItem(null);
       setQuantity('');
-      Alert.alert("Success", "Quantity updated successfully!"); // Alerta de sucesso
+      Alert.alert("Success", "Quantity updated successfully!");
     } catch (error) {
       console.error(error);
     }
@@ -96,8 +97,13 @@ const App = () => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={styles.item}
-            onPress={() => setSelectedItem(item)}
+            style={[
+              styles.item,
+              selectedItem && selectedItem.id === item.id && styles.selectedItem
+            ]}
+            onPress={() => {
+              setSelectedItem(item);
+            }}
           >
             <View style={styles.itemContent}>
               <Text style={styles.itemName}>{item.nome}</Text>
@@ -131,6 +137,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 20,
   },
   input: {
@@ -143,6 +150,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+  },
+  selectedItem: {
+    backgroundColor: '#d3d3d3',
   },
   itemContent: {
     flexDirection: 'row',
